@@ -1,7 +1,7 @@
 import json
 import pyrebase
 import os
-from flask import Blueprint, redirect, render_template, request, send_file
+from flask import Blueprint, redirect, render_template, request, flash
 from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.backends import default_backend
@@ -11,13 +11,13 @@ import base64
 
 
 config = {
-    "apiKey": "AIzaSyCYTonsY61ldDvZSb3FpeLZxMwUjsT84H4",
-    "authDomain": "bancodanifo.firebaseapp.com",
-    "databaseURL": "https://bancodanifo-default-rtdb.firebaseio.com",
-    "projectId": "bancodanifo",
-    "storageBucket": "bancodanifo.appspot.com",
-    "messagingSenderId": "304043770972",
-    "appId": "1:304043770972:web:eed42218b5b73a17291299"
+    "apiKey": "AIzaSyDZ3HF7aQ5GchQAy9wu6Jn3293e-UpGi3M",
+    "authDomain": "seguridadinfo-308ce.firebaseapp.com",
+    "databaseURL": "https://seguridadinfo-308ce-default-rtdb.firebaseio.com",
+    "projectId": "seguridadinfo-308ce",
+    "storageBucket": "seguridadinfo-308ce.appspot.com",
+    "messagingSenderId": "388981953527",
+    "appId": "1:388981953527:web:acf31898d798614a7814f2"
 }
 
 app = Blueprint('registro', __name__, url_prefix='/')
@@ -60,6 +60,7 @@ def registrarme():
 
     try:
         user = auth.create_user_with_email_and_password(email, password)
+        auth.send_email_verification(user['idToken'])
         datos = {
             "name": name,
             "username": username,
@@ -68,9 +69,13 @@ def registrarme():
             'password': password_encrypted_base64  # Almacena la contraseña encriptada en la base de datos
         }
         db.child('users').child(user['localId']).set(datos)
+        flash('¡Registro exitoso! Se ha enviado un correo de verificación a tu dirección de correo electrónico.', 'success')
+        print('Registro exitoso. Correo de verificación enviado.')
         return redirect('/login')
     except Exception as e:
         print(str(e))
+        flash('Error durante el registro. Por favor, inténtalo de nuevo.', 'danger')
+        print('error durante el registro')
         return redirect('/registro')
 
 

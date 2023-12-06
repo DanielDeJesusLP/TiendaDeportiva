@@ -6,11 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicia sesión</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stilor.css')}}"/>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+   
 
 </head>
 
 <body>
+    <div class="alert-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
 
     <div class="box">
         <div class="login-box">
@@ -43,6 +54,7 @@
         </div>
         
     </div>
-     
+ 
 </body>
+
 </html>

@@ -33,7 +33,7 @@ body {
     justify-content: center;
     flex-direction: column;
     width: 440px;
-    height: 500px;
+    height: 600px;
     padding: 30px;
     background: #1D1D1D;
     border-radius: 50px;
@@ -97,16 +97,6 @@ section a{
 }
 
 
-/* #a2{
-    position: absolute;
-    top: 90%;
-    left: 10%;
-    text-decoration: none;
-}
-#a2:hover{
-    text-decoration: underline;
-} */
-
 .imput-submit{
     position: relative;
 }
@@ -121,25 +111,7 @@ section a{
     margin-left: 25%;
     margin-right: 25%;
 }
-/* .submit-btn2{
-    position: absolute;
-    top: 90%;
-    left: 10%;
-    width: 30%;
-    height: 40px;
-    background: #0c0c0c;
-    border: none;
-    border-radius: 35px;
-    cursor:pointer;
-    transition: .3s;
-    margin-left: 25%;
-    margin-right: 25%;
 
-}
-.submit-btn2:hover{
-    background: #58d7f0;
-    transform: scale(1.05,1);
-} */
 
 .input-submit label{
     position: absolute;
@@ -167,4 +139,35 @@ section a{
     font-weight: 600;
 }
 
+.alert-container {
+    position: fixed;
+    top: 40px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 400px;  /* Ajusta el ancho máximo según tus preferencias */
+    z-index: 1000;  /* Ajusta la propiedad z-index según sea necesario para superponer sobre otros elementos */
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    color: #333;  
+    background-color: yellow;
+    border-color: yellowgreen;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
 
